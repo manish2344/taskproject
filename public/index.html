@@ -48,13 +48,13 @@
             const searchValueInput = document.getElementById('searchValue');
             const resultsTableBody = document.querySelector('#resultsTable tbody');
 
-            // Handle search form submission
+            
             searchForm.addEventListener('submit', function(event) {
                 event.preventDefault(); // Prevent form from refreshing the page
                 const searchType = document.querySelector('input[name="searchType"]:checked').value;
                 const searchValue = searchValueInput.value.trim();
 
-                // Validate that at least one of Pincode or Name is entered
+                
                 if (!searchValue) {
                     alert('Please enter either a pincode or a place name');
                     return;
@@ -64,7 +64,7 @@
                     ? `https://api.postalpincode.in/pincode/${searchValue}`
                     : `https://api.postalpincode.in/postoffice/${searchValue}`;
 
-                // Fetch data from the API
+               
                 fetch(apiUrl)
                     .then(response => response.json())
                     .then(data => {
@@ -105,7 +105,7 @@
                     });
             });
 
-            // Handle saving a favourite
+
             resultsTableBody.addEventListener('click', function(event) {
                 if (event.target && event.target.classList.contains('favourite-btn')) {
                     const name = event.target.dataset.name;
@@ -116,7 +116,7 @@
                     const region = event.target.dataset.region;
                     const state = event.target.dataset.state;
 
-                    // No need for validation here, just proceed to save the favourite
+                    
                     fetch('http://localhost:3000/favourite', {
                         method: 'POST',
                         headers: {
