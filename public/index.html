@@ -54,8 +54,9 @@
                 const searchType = document.querySelector('input[name="searchType"]:checked').value;
                 const searchValue = searchValueInput.value.trim();
 
+                // Check if either Pincode or Place Name is entered
                 if (!searchValue) {
-                    alert('Please enter a pincode or name');
+                    alert('Please enter either a Pincode or a Place Name');
                     return;
                 }
 
