@@ -4,17 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search by Pincode or Name</title>
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-5">
         <h2>Search by Pincode or Name</h2>
-
-        <!-- Navigation Link to Favourites Page -->
         <a href="favourites.html" class="btn btn-link">View Favourites</a>
 
-        <!-- Search Form -->
         <form id="searchForm" class="mt-4">
             <div class="form-group">
                 <label for="searchType">Search by:</label><br>
@@ -28,7 +24,6 @@
             <button type="submit" class="btn btn-primary">Search</button>
         </form>
 
-        <!-- Results Table -->
         <table class="table table-striped mt-5" id="resultsTable">
             <thead>
                 <tr>
@@ -42,24 +37,20 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Results will be dynamically inserted here -->
             </tbody>
         </table>
     </div>
 
-    <!-- Bootstrap 5 Bundle JS (includes Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-
             const searchForm = document.getElementById('searchForm');
             const searchValueInput = document.getElementById('searchValue');
             const resultsTableBody = document.querySelector('#resultsTable tbody');
 
-            // Form submission handling
+            // Handle search form submission
             searchForm.addEventListener('submit', function(event) {
-                event.preventDefault();
+                event.preventDefault(); // Prevent form from refreshing the page
                 const searchType = document.querySelector('input[name="searchType"]:checked').value;
                 const searchValue = searchValueInput.value.trim();
 
@@ -91,7 +82,18 @@
                                     <td>${result.District}</td>
                                     <td>${result.Region}</td>
                                     <td>${result.State}</td>
-                                    <td><button class="btn btn-success btn-sm favourite-btn" data-name="${result.Name}" data-pincode="${result.Pincode}" data-branch="${result.BranchType}" data-delivery="${result.DeliveryStatus}" data-district="${result.District}" data-region="${result.Region}" data-state="${result.State}">Mark as Favourite</button></td>
+                                    <td>
+                                        <button class="btn btn-success btn-sm favourite-btn" 
+                                                data-name="${result.Name}" 
+                                                data-pincode="${result.Pincode}" 
+                                                data-branch="${result.BranchType}" 
+                                                data-delivery="${result.DeliveryStatus}" 
+                                                data-district="${result.District}" 
+                                                data-region="${result.Region}" 
+                                                data-state="${result.State}">
+                                                Mark as Favourite
+                                        </button>
+                                    </td>
                                 `;
                                 resultsTableBody.appendChild(row);
                             });

@@ -1,5 +1,3 @@
-
-
 const express = require('express');
 const httpClient = require('axios');
 const jsonParser = require('body-parser');
