@@ -49,23 +49,23 @@ app.post('/search', async (request, response) => {
     }
 });
 
-app.post('/favourite', (request, response) => {
-    const { officeName, pinCode, officeType, deliveryStatus, districtName, regionName, stateName } = request.body;
-
-
-    const insertQuery = `
-        INSERT INTO favourites (officeName, pinCode, officeType, deliveryStatus, districtName, regionName, stateName)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+app.post('/favourites', (req, res) => {
+    const { name, pincode, branchType, deliveryStatus, district, region, state } = req.body;
+  
+    const query = `
+      INSERT INTO favourites (name, pincode, branchType, deliveryStatus, district, region, state)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
     `;
-
-    connection.query(insertQuery, [officeName, pinCode, officeType, deliveryStatus, districtName, regionName, stateName], (err, result) => {
-        if (err) {
-            console.error('Database insertion error:', err);
-            return response.status(500).json({ message: 'Failed to save data to the database' });
-        }
-        response.status(200).json({ message: 'Marked as favourite successfully!' });
+    connection.query(query, [name, pincode, branchType, deliveryStatus, district, region, state], (err, result) => {
+      if (err) {
+        console.error('Error inserting into database:', err);
+        console.error('Error inserting into database:', err);
+      } else {
+        res.status(200).json({ message: 'Data saved successfully' });
+      }
     });
-});
+  });
+  
 
 app.get('/favourites', (request, response) => {
     const fetchQuery = 'SELECT * FROM favourites';
