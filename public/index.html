@@ -54,9 +54,9 @@
                 const searchType = document.querySelector('input[name="searchType"]:checked').value;
                 const searchValue = searchValueInput.value.trim();
 
-                // Check if either Pincode or Place Name is entered
+                // Validate that at least one of Pincode or Name is entered
                 if (!searchValue) {
-                    alert('Please enter either a Pincode or a Place Name');
+                    alert('Please enter either a pincode or a place name');
                     return;
                 }
 
@@ -116,7 +116,7 @@
                     const region = event.target.dataset.region;
                     const state = event.target.dataset.state;
 
-                    // Save to favourites by sending data to backend
+                    // No need for validation here, just proceed to save the favourite
                     fetch('http://localhost:3000/favourite', {
                         method: 'POST',
                         headers: {
@@ -134,7 +134,7 @@
                     })
                     .then(response => response.json())
                     .then(data => {
-                        alert(data.message);
+                        alert(data.message); // Show success message
                     })
                     .catch(() => {
                         alert('Error saving to favourites');

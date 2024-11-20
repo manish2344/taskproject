@@ -52,9 +52,6 @@ app.post('/search', async (request, response) => {
 app.post('/favourite', (request, response) => {
     const { officeName, pinCode, officeType, deliveryStatus, districtName, regionName, stateName } = request.body;
 
-    if (!officeName || !pinCode) {
-        return response.status(400).json({ message: 'Both office name and pincode are required.' });
-    }
 
     const insertQuery = `
         INSERT INTO favourites (officeName, pinCode, officeType, deliveryStatus, districtName, regionName, stateName)
